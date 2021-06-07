@@ -29,11 +29,11 @@ def login(driver):
     # password=driver.find_element_by_id('id_password')
 
     # einloggen
-    user = "mayer@dezim-institut.de"
+    user = ""
     login.send_keys(user)
 
     # access password-field marked as not interactable
-    pw = driver.execute_script("document.getElementById('password_login-form').value='ImgesIIsz2021'")
+    pw = driver.execute_script("document.getElementById('password_login-form').value=''")
 
     # achtung, ich muss erst NEBEN den frame klicken:
     # dann kann ich erst submit klicken!

@@ -26,12 +26,12 @@ def login(driver):
 
     activate_login = loginform.find_element_by_xpath("//div[@data-testid='username']").click()
     username = driver.find_element_by_xpath("//input[@name='username']")
-    username.send_keys("mayer@dezim-institut.de")
+    username.send_keys("")
 
     # locate and activate password-field
     activate_password = loginform.find_element_by_xpath("//div[@data-testid='password']").click()
     password = driver.find_element_by_xpath("//input[@name='password']")
-    password.send_keys("ImgesIIbild")
+    password.send_keys("")
 
     # login
     submit = driver.find_element_by_id('login-form-submit').click()

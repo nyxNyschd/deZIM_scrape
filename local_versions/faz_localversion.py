@@ -34,8 +34,8 @@ def login(driver):
     pw = driver.find_element_by_id('login-form-password')
 
     # einloggen
-    login.send_keys("mayer@dezim-institut.de")
-    pw.send_keys("ImgesIIfaz2021")
+    login.send_keys("")
+    pw.send_keys("")
 
     submit = driver.find_element_by_class_name('btn-white-with-border')
     submit.click()

@@ -50,13 +50,13 @@ def lambda_handler(event, context):
     # locate login-input
     time.sleep(5)
     login = driver.find_element_by_id('login-form-email')
-    user = "mayer@dezim-institut.de"
+    user = ""
     # einloggen
     login.send_keys(user)
 
     # access password-field marked as not interactable
     pw = driver.find_element_by_id('login-form-password')
-    pw.send_keys("ImgesIIfaz2021")
+    pw.send_keys("")
 
     # submit
     submit = driver.find_element_by_class_name('btn-white-with-border')

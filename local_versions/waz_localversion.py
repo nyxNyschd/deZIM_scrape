@@ -28,9 +28,9 @@ def login(driver):
     username.click()
 
     #login
-    username.send_keys("mayer@dezim-institut.de")
+    username.send_keys("")
     password = driver.find_element_by_id('password')
-    password.send_keys("ImgesIIwaz")
+    password.send_keys("")
     submit = userwrapper.find_element_by_xpath("//input[@type='submit']").click()
 
     # exit iframe

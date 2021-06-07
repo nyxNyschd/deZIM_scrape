@@ -18,8 +18,8 @@ def login(driver):
     password = driver.find_element_by_name('password')
 
     # einloggen
-    username.send_keys("mayer@dezim-institut.de")
-    password.send_keys("ImgesIIrp")
+    username.send_keys("")
+    password.send_keys("")
 
     # submit
     driver.find_element_by_class_name('park-button').click()

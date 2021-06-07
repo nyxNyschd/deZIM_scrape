@@ -38,12 +38,12 @@ def lambda_handler(event, context):
 
     # locate login-input
     login = driver.find_element_by_id('login_login-form')
-    user = "mayer@dezim-institut.de"
+    user = ""
     # einloggen
     login.send_keys(user)
 
     # access password-field marked as not interactable
-    pw = driver.execute_script("document.getElementById('password_login-form').value='ImgesIIsz2021'")
+    pw = driver.execute_script("document.getElementById('password_login-form').value=''")
 
     # achtung, ich muss erst NEBEN den frame klicken:
     # dann kann ich erst submit klicken!
