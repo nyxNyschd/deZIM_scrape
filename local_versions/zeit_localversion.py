@@ -5,6 +5,7 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import *
 from selenium.webdriver.common.by import By
 import json
+import time
 
 def login(driver):
 
@@ -30,20 +31,31 @@ def login(driver):
     submit.click()
 
     # enter iframe
-    # frame = driver.find_element_by_id('sp_message_iframe_494009')
+
     # WAIT!! until element da!!!
+    time.sleep(10)
     wait = WebDriverWait(driver, 10, poll_frequency=10,
                          ignored_exceptions=[NoSuchElementException, ElementNotVisibleException,
                                              ElementNotSelectableException, TimeoutException])
-    wait.until(EC.presence_of_element_located((By.XPATH, "//iframe[@title='SP Consent Message']")))
-    frame = driver.find_element_by_xpath("//iframe[@title='SP Consent Message']")
+    wait.until(EC.presence_of_element_located((By.ID, "sp_message_iframe_494009")))
+               #((By.XPATH, "//iframe[@title='SP Consent Message']")))
+    #frame = driver.find_element_by_xpath("//iframe[@title='SP Consent Message']")
+    frame = driver.find_element_by_id('sp_message_iframe_494009')
 
     driver.switch_to.frame(frame)
 
     # werbung akzeptieren
+    time.sleep(10)
     try:
-        accept = driver.find_element_by_xpath("//button[@title='EINVERSTANDEN']")
+        #accept = driver.find_element_by_xpath("//button[@title='EINVERSTANDEN']")
+        accept = driver.find_element_by_xpath('//button[text() = "EINVERSTANDEN"]')
         accept.click()
+    except:
+        pass
+    try:
+       # accept = driver.find_element_by_xpath("//button[@title='I Agree']")
+       accept = driver.find_element_by_xpath('//button[text() = "I Agree"]')
+       accept.click()
     except:
         pass
 

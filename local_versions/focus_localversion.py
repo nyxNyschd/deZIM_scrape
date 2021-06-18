@@ -1,13 +1,20 @@
 from selenium import webdriver
+from selenium.webdriver.chrome.options import Options
 from bs4 import BeautifulSoup
 import json
 import re
+import lxml
 
-def get_focus_fulltexts(driver):
+options = Options()
+#options.add_argument('--headless')
+options.add_argument('--no-sandbox')
+
+def get_focus_fulltexts():
+    driver = webdriver.Chrome("/usr/lib/chromium-browser/chromedriver", options=options)
     # open feed-page
     driver.get("https://rss.focus.de/fol/XML/rss_folnews.xml")
     content = driver.page_source
-    soup = BeautifulSoup(content, 'xml')
+    soup = BeautifulSoup(content, 'lxml')
 
     articles = soup.findAll('item')
     for post in articles:
@@ -22,7 +29,7 @@ def get_focus_fulltexts(driver):
         driver.get(link)
 
         newcontent = driver.page_source
-        soupy = BeautifulSoup(newcontent)
+        soupy = BeautifulSoup(newcontent, 'html.parser')
 
         # accept cookies:
         try:
@@ -68,5 +75,5 @@ def get_focus_fulltexts(driver):
 
 
 if __name__ == '__main__':
-    driver = webdriver.Chrome("/usr/lib/chromium-browser/chromedriver")
-    get_focus_fulltexts(driver)
+
+    get_focus_fulltexts()

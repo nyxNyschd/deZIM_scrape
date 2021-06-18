@@ -97,6 +97,7 @@ async def scrape_page(url,browser,page):
     for link in links:
         try:
             await page.goto(link)
+            #print(link)
 
             # get html
             if not await page.J('.cmpboxbtnyes'):
@@ -146,6 +147,7 @@ async def scrape_page(url,browser,page):
                 except:
                     continue
             joined_text = ' '.join(fulltext)
+            #print('text__: '+joined_text)
 
             #get paywall-info
             paywall_info = soup.find('meta', {'property': 'article:content_tier'})

@@ -1,8 +1,9 @@
-
-from selenium import webdriver
+import asyncio
+import time
+from pyppeteer import launch
+from pyppeteer.errors import TimeoutError
 from bs4 import BeautifulSoup
-import json
-from selenium.webdriver.common.by import By
+import pandas as pd
 
 def login(driver):
     # openpage

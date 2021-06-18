@@ -13,6 +13,7 @@ def login(driver):
 
     # find username and password input
     username = driver.find_element_by_name('username')
+    # park-input__input-610738293
     # wooow: die ändern die ID täglich!!!
 
     password = driver.find_element_by_name('password')
@@ -67,39 +68,40 @@ def get_fulltext(driver):
         #print(paywalled)
 
         # follow link
-        try:
-            driver.get(link)
-        except:
-            pass
-        newcontent = driver.page_source
-        soup = BeautifulSoup(newcontent, "html.parser")
-
-        teaserwrapper = soup.find('div', {'class': 'park-article__body'})
-        teaser = teaserwrapper.find('p', {'class': 'park-article__intro'}).text
-
-        articls = soup.findAll('div', {'class': 'park-article-content'})
-        fulltext = []
-        for par in articls:
+        if paywalled==1:
             try:
-                paragraph = par.find('p', recursive=False).text
-                fulltext.append(paragraph)
+                driver.get(link)
             except:
                 pass
-        joined_text = ' '.join(fulltext)
-        art_id = "RP-" + published + joined_text[9:11]
+            newcontent = driver.page_source
+            soup = BeautifulSoup(newcontent, "html.parser")
 
-        article = {
-            'id': art_id,
-            'title': title,
-            'link': link,
-            'teaser': teaser,
-            'text': joined_text,
-            'category': categories,
-            'published': published,
-            'paywall': paywalled
-        }
-        print(article)
-        articles.append(article)
+            teaserwrapper = soup.find('div', {'class': 'park-article__body'})
+            teaser = teaserwrapper.find('p', {'class': 'park-article__intro'}).text
+
+            articls = soup.findAll('div', {'class': 'park-article-content'})
+            fulltext = []
+            for par in articls:
+                try:
+                    paragraph = par.find('p', recursive=False).text
+                    fulltext.append(paragraph)
+                except:
+                    pass
+            joined_text = ' '.join(fulltext)
+            art_id = "RP-" + published + joined_text[9:11]
+
+            article = {
+                'id': art_id,
+                'title': title,
+                'link': link,
+                'teaser': teaser,
+                'text': joined_text,
+                'category': categories,
+                'published': published,
+                'paywall': paywalled
+            }
+            print(article)
+            articles.append(article)
 
 
 if __name__ == '__main__':

@@ -32,7 +32,7 @@ def login(driver):
     time.sleep(2)
 
     # dann noch der Werbung zustimmen:
-    accept = driver.find_element_by_id('sp_message_iframe_449643').click()
+    accept = driver.find_element_by_xpath('//div.message-component.message-row > button').click()
 
 
 def get_spiegel_fulltext(driver):
