@@ -21,7 +21,8 @@ def login(driver):
     # access iframe to accept cookies
     # erst warten!
     time.sleep(5)
-    frame = driver.find_element_by_xpath("//*[@id='sp_message_iframe_511728']")
+    frame = driver.find_element_by_xpath("//iframe[@title='Iframe title']")
+        #("//*[@id='sp_message_iframe_514466']")
     driver.switch_to.frame(frame)
 
     # accept cookies
@@ -76,7 +77,7 @@ def login(driver):
         pass
     # falls dann nochmal accept-box kommt
     try:
-        frame_members = driver.find_element_by_xpath("//*[@id='sp_message_iframe_511728']")
+        frame_members = driver.find_element_by_xpath("//iframe[@title='Iframe title']")
         driver.switch_to.frame(frame_members)
         # accept "weniger werbung für digital abo"
         accept = driver.find_element_by_xpath("//button")
@@ -188,7 +189,7 @@ def get_sz_fulltexts(driver):
 
 if __name__ == '__main__':
     options = Options()
-    options.add_argument('--headless')
+    #options.add_argument('--headless')
     options.add_argument('--no-sandbox')
     options.add_argument('--single-process')
     options.add_argument('--disable-dev-shm-usage')
